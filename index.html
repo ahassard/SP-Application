@@ -1,0 +1,1946 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<header>
+  <meta http-equiv="X-UA-Compatible" content="IE=9; IE=8; IE=7; IE=EDGE"> 
+<title>
+    SharePoint Data Application - (U)Classified
+</title>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
+<link rel="stylesheet" href="https://code.jquery.com/ui/1.11.4/themes/vader/jquery-ui.css">
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/lib/font-awesome/5.13.0/js/all.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+<script>
+//EXORD Reference LIST SP
+$.ajax({
+          url: oDataUrl,
+          method: "POST",
+          data: JSON.stringify({
+                  '__metadata': { 'type': 'SP.Data.EXORDRefereneList'},
+                  'Title': $('#').val(),
+                  'Category': $('#').val(),
+                  'LOE': $('#').val(),
+                  'Objective': $('#').val(),
+                  'IMO': $('#').val(),
+                  'Reference Number': $('#').val(),
+                  'Suspense Date': $('#').val(),
+                  'OPR': $('#').val(),
+                  'OCR': $('#').val(),
+                  'Description': $('#').val(),
+                }),
+              }),
+//Effect LIST SP
+$.ajax({
+          url: oDataUrl,
+          method: "POST",
+          data: JSON.stringify({
+                  '__metadata': { 'type': 'SP.Data.EffectList'},
+                  'Effect Title': $('#').val(),
+                  'Effect ID': $('#').val(),
+                  'Active': $('#').val(),
+                  'Reference Number': $('#').val(),
+                  'Effect Description': $('#').val(),
+                  'OPR': $('#').val(),
+                  'OCR ': $('#').val(),
+                  'Suspense Date': $('#').val(),
+                  'Completed': $('#').val(),
+                  'LOE': $('#').val(),
+                  'Objective': $('#').val(),
+                  'IMO': $('#').val(),
+                }),
+              }),
+// MOP LIST SP
+$.ajax({
+          url: oDataUrl,
+          method: "POST",
+          data: JSON.stringify({
+                  '__metadata': { 'type': 'SP.Data.MOPList'},
+                  'MOP Title': $('#').val(),
+                  'MOP ID': $('#').val(),
+                  'Active': $('#').val(),
+                  'MOP Description': $('#').val(),
+                  'Suspense Date': $('#').val(),
+                  'Task': $('#').val(),
+                  'MOP Completed': $('#').val(),
+                }),
+              }),
+// Milestone LIST SP
+$.ajax({
+          url: oDataUrl,
+          method: "POST",
+          data: JSON.stringify({
+                  '__metadata': { 'type': 'SP.Data.MilestoneList'},
+                  'CoC Meeting': $('#').val(),
+                  'Milestone ID': $('#').val(),
+                  'Active': $('#').val(),
+                  'Description': $('#').val(),
+                  'Milestone Date': $('#').val(),
+                  'LOE': $('#').val(),
+                  'Objective': $('#').val(),
+                  'IMO': $('#').val(),
+                }),
+              }),
+//Task LIST SP
+$.ajax({
+          url: oDataUrl,
+          method: "POST",
+          data: JSON.stringify({
+                  '__metadata': { 'type': 'SP.Data.TaskList'},
+                  'Task Title': $('#').val(),
+                  'Task ID': $('#').val(),
+                  'Active': $('#').val(),
+                  'Effects': $('#').val(),
+                  'Task Description': $('#').val(),
+                  'OPR': $('#').val(),
+                  'OCR ': $('#').val(),
+                  'AO Name': $('#').val(),
+                  'AO Phone Number ': $('#').val(),
+                  'Task Status': $('#').val(),
+                  'Start Date ': $('#').val(),
+                  'Suspense Date': $('#').val(),
+                  'Date Created': $('#').val(),
+                  'Completion Date': $('#').val(),
+                  'Remarks': $('#').val(),
+                  'Guidance': $('#').val(),
+                  'Solution': $('#').val(),
+                }),
+              }),
+//Decision LIST SP
+$.ajax({
+          url: oDataUrl,
+          method: "POST",
+          data: JSON.stringify({
+                  '__metadata': { 'type': 'SP.Data.DecisionList'},
+                  'Title': $('#').val(),
+                  'Decision ID': $('#').val(),
+                  'Active': $('#').val(),
+                  'LOE': $('#').val(),
+                  'Objective': $('#').val(),
+                  'IMO': $('#').val(),
+                  'Milestone Decision ': $('#').val(),
+                  'Description': $('#').val(),
+                  'Decider': $('#').val(),
+                  'Decision Supsense Date': $('#').val(),
+                  'Decision Date': $('#').val(),
+                  'Decision By Name': $('#').val(),
+                  'Decision By Email': $('#').val(),
+                  'Decision By Phone Number': $('#').val(),
+                  'Decision Made': $('#').val(),
+                }),
+              }),
+
+</script>
+<style>
+/* Hide Sharepoint Side Nav to show full View for App */
+.ms-webpart-titleText.ms-webpart-titleText, .ms-webpart-titleText > a {
+	display: hidden;
+}
+#sideNavBox{
+	display: none;
+}
+
+#contentBox{
+	margin-left: 20px!important;
+}
+.spBody {
+  padding: 0;
+  margin: 0;
+  min-height: 100%;
+  min-width: 100;
+}
+.spBody .container-fluid {
+  min-height: 100%;
+}
+.spBody #navRow {
+  min-height: 100%; 
+}
+.spBody #sideNavCol {
+  max-width: 16% !important;
+  margin-top: 2%;
+  min-height: 96vh !important; 
+  border-radius: 6px;
+  box-shadow: 2px 1px 8px 5px rgba(0,0,0,0.27);
+  overflow: hidden;
+  margin-bottom: -57%; 
+  padding-bottom: 57%; 
+}
+.spBody #sideNav { 
+  min-width: 100% !important;
+  min-height: 100% !important;
+  padding: 3% !important;
+  overflow: hidden
+}
+.spBody .dropdown {
+  margin-bottom: 6px;
+}
+.spBody .dropdown button {
+  border: solid rgb(177, 177, 177) 1px;
+  border-radius: 6px;
+  width: 100% !important;
+  font-weight: 800;
+  font-size: 18px;
+}
+.spBody .dropdown i {
+  float: right;
+  margin-top: 2%;
+  margin-right: 3%;
+}
+.spBody .dropdown-menu {
+width: 100%; padding: 4px 0px;
+}
+.spBody .dropdown-menu a {
+  font-size: 18px;
+  padding-left: 2%;
+}
+.spBody #tabs button {
+  min-width: 100% !important;
+}
+.spBody #tabs .col {
+  min-width: 22% !important;
+}
+.spBody #contentView {
+  max-height: 85vh !important;
+}
+select, option { 
+  background: #fff; 
+}
+select.backlog, option[value="backlog"] { 
+  background: #acacac; 
+  opacity: 70%;
+  color: white;
+  font-weight: 700;
+  padding-left: 25%;
+  font-size: 1.1em;
+  }
+select.inProgress, option[value="inProgress"] { 
+  background: #28a745;
+  opacity: 60%; 
+  color: white;
+  font-weight: 700;
+  padding-left: 25%;
+  font-size: 1.1em;
+}
+select.fwdAct, option[value="fwdAct"] { 
+  background: #28a745;
+  opacity: 60%; 
+  color: white;
+  font-weight: 700;
+  padding-left: 25%;
+  font-size: 1.1em;
+}
+select.completed, option[value="completed"] { 
+  background: #28a745;
+  opacity: 60%;
+  color: white;
+  font-weight: 700;
+  padding-left: 25%;
+  font-size: 1.1em;
+}
+select.blocked, option[value="blocked"] { 
+  background: #dc3545;
+  opacity: 60%; 
+  color: white;
+  font-weight: 700;
+  padding-left: 25%;
+  font-size: 1.1em;
+}
+.spBody em {
+  color: #b8a136 !important;
+}
+.spBody #tabs .col {
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2) !important;
+}
+.spBody .tab {
+  overflow: hidden;
+  border: 1px solid #ccc;
+  background-color: #ffffff;
+  min-width: 100%;
+}
+.spBody #tabs {
+  min-width: 100%;
+}
+/* Style the buttons inside the tab */
+.spBody .tab button {
+  background-color: inherit;
+  float: left;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 3%;
+  transition: 0.3s;
+  font-size: 28px;
+  font-weight: 700;
+}
+
+/* Change background color of buttons on hover */
+.spBody #tabs .col:hover {
+  background-color: rgb(240, 240, 240);
+}
+
+/* Create an active/current tablink class */
+.spBody #tabs .col.active {
+  background-color: #ccc;
+}
+
+/* Style the tab content */
+.spBody .contentView {
+  display: none;
+  padding: 6px 12px;
+  border-top: none;
+  margin-top: 2% !important;
+}
+/* Tab Contents */
+.spBody .card {
+  margin:2px !important;
+  padding: 0px !important;
+}
+.spBody .card-header {
+  background-color: #262626 !important;
+  color: #b8a136 !important; 
+  font-weight: 800 !important;
+  font-size: 1.5em !important;
+  text-align: center !important;
+}
+.spBody .dropdown button:hover {
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2) !important;
+}
+.spBody li {
+  padding-top: 8px !important;
+  padding-bottom: 8px !important;
+  font-size: 18px !important;
+}
+.spBody td {
+  border: solid black;
+  box-shadow: 3px 1px 1px 0px rgba(0,0,0,0.27);
+  font-weight: 600; 
+  padding-left: 5px;
+} 
+.spBody .td1 {
+  width: 130px !important;
+  padding: 10px 5px;
+}
+/* Side Navigation */
+.spBody em {
+	color: #a0a0a0;
+}
+.spBody a {
+  font-weight: 800 !important;
+  color: rgb(0, 0, 0) !important;
+  text-decoration: none !important;
+}
+.spBody a:hover {
+  text-decoration: none!important;
+  color: #c40000 !important;
+}
+.spBody a:link {
+  text-decoration:none;
+}
+.spBody ul.tree, .tree li {
+    list-style: none;
+    margin:0;
+    padding:0;
+    cursor: pointer;
+}
+.spBody .tree ul {
+  display:none;
+}
+.spBody .tree > li {
+  display:block;
+  background:rgb(255, 255, 255);
+  margin-bottom:0px;
+}
+.spBody .tree span {
+  display:block;
+  padding:30px 15px;
+}
+.spBody .icon {
+  display:inline-block;
+}
+.spBody .tree .hasChildren > .expanded {
+  background:rgb(167, 167, 167);
+}
+.spBody .tree .hasChildren > .expanded a {
+  color:rgb(211, 211, 211);
+}
+.spBody .icon:before {
+  content: '';
+  display:inline-block;
+  min-width:20px;
+  text-align:center;
+}
+.spBody .tree .icon.expanded:before {
+  content:"-";
+}
+/*Tabs*/
+.show-effect {
+  display:block!important;
+}
+.spBody #allContentView {
+  margin-top: 1%;
+  margin-left: 2%;
+  width: 98%;
+}
+.spBody #people, #readiness, #modernization {
+	display:inline-block !important;
+}
+/*Scrolling Content*/
+.spBody .card-body{
+  overflow: auto !important;
+  padding: 0px !important;
+  margin: 10px !important;
+  min-height: 260px !important;
+  background-color: #ebebeb !important;
+}
+.spBody .list-group {
+    overflow: auto !important;
+    min-height: 230px !important;
+    min-width: 98% !important;
+    max-height: 275px !important;
+}
+.spBody .scrollDescription {
+    overflow: auto !important;
+    max-height: 250px !important;
+    margin: none !important;
+    padding: 2px !important;
+}
+.spBody #scrollNav {
+  overflow: auto !important;
+  min-height: 90vh !important;
+}
+.spBody #dashboard { 
+  display: block; /* This shows that dashboard on start*/
+}
+.spBody #contents {
+  min-height: 70vh !important;
+  padding: 5px !important;
+}
+.spBody .container-fluid {
+  margin: 0px !important;
+  min-height: 70vh !important;
+}
+.spBody #contentView {
+  min-height: 70vh !important;
+  margin-top: 2% !important;
+}
+.spBody .card-footer {
+  background-color: rgb(52,58,64);
+  height: 60px;
+}
+.spBody .switchToggle input[type=checkbox]{
+  height: 0; 
+  width: 0; 
+  visibility: hidden; 
+  position: absolute; 
+  }
+.spBody .switchToggle label {
+  cursor: pointer; 
+  text-indent: -9999px; 
+  width: 150px; 
+  max-width: 300px; 
+  height: 36px; 
+  background: #ca2c2c; 
+  display: block; 
+  border-radius: 100px; 
+  position: relative;
+   }
+.spBody .switchToggle label:after {
+  content: ''; 
+  position: absolute; 
+  top: 1px; left: 1px; 
+  width: 30px; 
+  height: 32px; 
+  background: rgb(255, 255, 255); 
+  border-radius: 90px; 
+  transition: 0.3s; 
+}
+.spBody .switchToggle input:checked + label, .switchToggle input:checked + input + label  {
+  background: #3ab635; 
+}
+.spBody .switchToggle input + label:before, .switchToggle input + input + label:before {
+  content: 'INCOMPLETE'; 
+  position: absolute; 
+  top: 5px; left: 35px; 
+  width: 150px; 
+  height: 26px; 
+  border-radius: 90px; 
+  transition: 0.3s; 
+  text-indent: 0; 
+  color: #fff; 
+}
+.spBody .switchToggle input:checked + label:before, .switchToggle input:checked + input + label:before {
+  content: 'COMPLETED'; 
+  position: absolute; 
+  top: 5px; left: 10px; 
+  width: 150px; 
+  height: 26px; 
+  border-radius: 90px; 
+  transition: 0.3s; 
+  text-indent: 0; 
+  color: #fff; 
+}
+.spBody .switchToggle input:checked + label:after, .switchToggle input:checked + input + label:after {
+  left: calc(100% - 2px); 
+  transform: translateX(-100%); 
+}
+.spBody .switchToggle label:active:after {
+  width: 60px; 
+} 
+.spBody .toggle-switchArea {
+  margin: 10px 0 10px 0;
+}
+.spBody #dashboardProgress {
+  font-weight: 600 !important;
+  font-size: 20px !important;
+  margin-top: 20px !important;
+  margin-left: 15px;
+  max-width: 30% !important;
+}
+.spBody #dashboardProgress .progress {
+  margin-left: 10px;
+  height: 22px;
+  box-shadow: 0 6px 8px 2px rgba(0,0,0,0.3) !important;
+}
+.spBody #dashboardProgress .progress-bar {
+  height: 22px;
+  font-size: 18px !important;
+  font-weight: 800 !important;
+  box-shadow: 0 4px 8px 4px rgba(0,0,0,0.2) !important;
+  color: black !important;  
+}
+.spBody #taskAssignedCol {
+  margin-top: 20px !important;
+  margin-left: 0px;
+  max-width: 70% !important;
+  margin-right: 10px;
+}
+.spBody .card {
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2) !important;
+}
+</style>
+</header>
+
+<body>
+<!-- START SP BODY CONTENT-->
+<div class="spBody">
+<!--TAB LINKS DASHBOARD/PEOPLE/READINESS/MODERNIZATION-->
+    <div class="tab">
+  <div class="row" id="tabs">
+  <div class="col">
+    <button><a href="#_Dashboard" class="links active" id="dashboardTab"  onclick="openView(event, 'dashboard')">DASHBOARD</a></button>
+  </div>
+  <div class="col">
+    <button><a href="#_LOE_People" class="links" id="peopleTab"  onclick="openView(event, 'views')">PEOPLE</a></button>
+  </div>
+  <div class="col">
+    <button><a href="#_LOE_Readiness" class="links" id="readinessTab"  onclick="openView(event, 'views')">READINESS</a></button>
+  </div>
+  <div class="col">
+    <button><a href="#_LOE_Modernization" class="links" id="modernizationTab" onclick="openView(event, 'views')">MODERNIZATION</a></button>
+  </div>
+  <div class="col" style="min-width: 3% !important;">
+    <button  style="min-height: 100% !important;"><a href="#" class="links" id="userGuideTab"  onclick="openView(event, 'userGuide')"><i class="far fa-question-circle fa-lg"></i></a></button>
+  </div>
+  </div>
+    </div>
+<!--START SIDE NAV and MAIN CONTENT CONTAINER UNDER STATIC TABS-->
+    <div class="container-fluid">
+        <div id="navRow" class="row justify-content-start no-gutters">
+<!--COLUMN 1 STATIC -->
+<!--START SIDE NAV-->
+          <div id="sideNavCol" class="col">
+          <div class="nav" id="sideNav">
+                <div class="d-flex flex-column" style="min-width: 100% !important;">
+<!-- TOOLBAR SIDENAV -->
+                  <div class="align-self-top" style="margin-top: 10px;">
+                    <div class="dropdown">
+                      <button style="min-width: 80% !important; padding: 2% 10% !important;" class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown"></i><span data-toggle="tooltip" data-placement="bottom" title="Quick ADD Toolbar">TOOLBAR</span>
+                      </button>
+                      <ul class="dropdown-menu" style="min-width: 100% !important; padding: 2% 2% !important;">
+                        <li><a href="#task" class="links" onclick="openView(event, 'task')">NEW TASK<i class="fas fa-plus-square fa-1x"></i></a>
+                        </li>
+                        <li><a href="#decision" class="links" onclick="openView(event, 'decision')">NEW DECISION<i class="fas fa-plus-square fa-1x"></i></a>
+                        </li>
+                        <li><a href="#milestone" class="links" onclick="openView(event, 'milestone')">NEW MILESTONE<i class="fas fa-plus-square fa-1x"></i></a>
+                        </li>
+                        <li><a href="#mop" class="links" onclick="openView(event, 'mop')">NEW MOP<i class="fas fa-plus-square fa-1x"></i></a>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+<!-- SIDE NAV SHOWS EACH LOE OBJ/IMO/IMO EFFECT LIST TREE-->
+                  <nav class="nav flex-column">
+                    <ul class="tree" role="tablist">
+                        <li class="tree__item hasChildren">
+                            <span>
+                                <a href="#_LOE_People" class="loeLink" onclick="openView(event, 'views')" style="display: inline-block; width: 40%;">
+                                  <h6 data-toggle="tooltip" data-placement="bottom" title="People View Here" style="font-weight: 800;">PEOPLE</h6>
+                                </a>
+                                <div class="icon" style="width: 8%;"><i class="far fa-caret-square-down fa-lg"></i></div>
+                            </span>
+                            <ul>
+                                <li>
+                                    <span>
+                                        <a href="#"  class="objectiveLink" onclick="openView(event, 'views')" style="width: 100px; display: inline-block;"><h6 data-toggle="tooltip" data-placement="bottom" title="Objectives within People View Here">OBJECTIVES</h6>
+                                        </a>
+                                        <div class="icon" style="display: inline-block;"><i class="far fa-caret-square-down"></i></div>
+                                    </span>
+                                    <ul>
+                                        <li>
+                                            <span>
+                                                <a href="#" class="imoLink" onclick="openView(event, 'views')" style="width: 75px; display: inline-block;"><h6 data-toggle="tooltip" data-placement="bottom" title="IMO within People View Here">IMO</h6>
+                                                </a>
+                                                <div class="icon" style="display: inline-block;"><i class="far fa-caret-square-down"></i></div>
+                                            </span>
+                                            <ul>
+                                                <li>
+                                                    <span>
+                                                        <a href="#" onclick="openView(event, 'effect')">
+                                                          <h6 data-toggle="tooltip" data-placement="bottom" title="IMO Effects within People View Here">IMO EFFECT</h6>
+                                                        </a>
+                                                    </span>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="tree__item hasChildren">
+                            <span>
+                                <a href="#_LOE_Readiness" class="loeLink" onclick="openView(event, 'views')" style="display: inline-block; width: 65%;">
+                                  <h6 data-toggle="tooltip" data-placement="bottom" title="Readiness View Here" style="font-weight: 800;">READINESS</h6>
+                                </a>
+                                <div class="icon" style="width: 8%;"><i class="far fa-caret-square-down fa-lg"></i></div>
+                            </span>
+                            <ul>
+                                <li>
+                                    <span>
+                                        <a class="objectiveLink" onclick="openView(event, 'views')" href="#" style="width: 100px; display: inline-block;">
+                                          <h6 data-toggle="tooltip" data-placement="bottom" title="Objectives within Readiness View Here">OBJECTIVES</h6>
+                                        </a>
+                                        <div class="icon" style="display: inline-block;"><i class="far fa-caret-square-down"></i></div>
+                                    </span>
+                                    <ul>
+                                        <li>
+                                            <span>
+                                                <a class="imoLink" onclick="openView(event, 'views')" href="#" style="width: 75px; display: inline-block;">
+                                                  <h6 data-toggle="tooltip" data-placement="bottom" title="IMO within Readiness View Here">IMO</h6>
+                                                </a>
+                                                <div class="icon" style="display: inline-block;"><i class="far fa-caret-square-down"></i></div>
+                                            </span>
+                                            <ul>
+                                                <li>
+                                                    <span>
+                                                        <a href="#" onclick="openView(event, 'effect')">
+                                                          <h6 data-toggle="tooltip" data-placement="bottom" title="IMO Effects within Readiness View Here">IMO EFFECT</h6>
+                                                        </a>
+                                                    </span>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="tree__item hasChildren">
+                            <span>
+                                <a href="#_LOE_Modernization" class="loeLink" onclick="openView(event, 'views')">
+                                  <h6 data-toggle="tooltip" data-placement="bottom" title="Modernization View Here" style="font-weight: 800; display: inline-block; width: 85%;">MODERNIZATION</h6>
+                                </a>
+                                <div class="icon" style="width: 8%;"><i class="far fa-caret-square-down fa-lg"></i></div>
+                            </span>
+                            <ul>
+                                <li>
+                                    <span>
+                                        <a href="#" class="objectiveLink" onclick="openView(event, 'views')" style="width: 100px; display: inline-block;">
+                                          <h6 data-toggle="tooltip" data-placement="bottom" title="Objectives within Modernization View Here">OBJECTIVES</h6>
+                                        </a>
+                                        <div class="icon" style="display: inline-block;"><i class="far fa-caret-square-down"></i></div>
+                                    </span>
+                                    <ul>
+                                        <li>
+                                            <span>
+                                                <a href="#" class="imoLink" onclick="openView(event, 'views')" style="width: 75px; display: inline-block;">
+                                                  <h6 data-toggle="tooltip" data-placement="bottom" title="IMO within Modernization View Here">IMO</h6>
+                                                </a>
+                                                <div class="icon" style="display: inline-block;"><i class="far fa-caret-square-down"></i></div>
+                                            </span>
+                                            <ul>
+                                                <li>
+                                                    <span>
+                                                        <a href="#" onclick="openView(event, 'effect')">
+                                                          <h6 data-toggle="tooltip" data-placement="bottom" title="IMO Effect within Moderniztion View Here">IMO EFFECT</h6>
+                                                        </a>
+                                                    </span>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                  </nav> 
+                </div>
+          </div>
+          </div>
+<!--END SIDE NAV-->
+<!--COLUMN 2 DYNAMIC-->
+<!-- MAIN CONTENT VIEWS-->
+          <div class="col" id="mainContent" style="max-width: 88% !important">
+              <div id="contentView">
+                      <div class="row">
+                          <div class="col mb-3">
+                            <div id="allcontentView">
+<!--DASHBOARD VIEW-->         <div id="dashboard" class="contentView">
+                                    <div class="row">
+                  <!-- FIRST COLUMN OF DASHBOARD COMPLETION STATS SAME AS EACH LOE VIEW COMPLETION PROGRESS BARS-->
+                                        <div id="dashboardProgress" class="col">
+                                           <label for="peopleProgress">PEOPLE</label> 
+                                           <div id="peopleProgress" class="progress">
+                                               <div id="peopleProgressBar" class="progress-bar progress-bar-striped progress-bar-animated bg-warning" role="progressbar" style="width: 62%"  aria-valuemin="0" aria-valuemax="100">62%</div>
+                                           </div><br>
+                                             <label for="readinessProgress">READINESS</label>
+                                           <div id="readinessProgress" class="progress">
+                                               <div id="readinessProgressBar" class="progress-bar progress-bar-striped progress-bar-animated bg-danger" role="progressbar" style="width: 40% " aria-valuenow="40" aria-valuemin="0" aria-valuemax="100">40%</div>
+                                           </div><br>
+                                             <label for="modernizationProgress">MODERNIZATION</label>
+                                           <div id="modernizationProgress"class="progress">
+                                               <div id="modernizationProgressBar" class="progress-bar progress-bar-striped progress-bar-animated bg-success" role="progressbar" style="width: 92%;" aria-valuenow="92" aria-valuemin="0" aria-valuemax="100">92%</div>
+                                           </div>
+                                        </div>
+                                      <!--SECOND COLUMN DASHBOARD TASK ASSIGNED LIST GOES HERE-->
+                                        <div id="taskAssignedCol" class="col">
+                                            <!-- TASK ITEMS ASSIGNED DASHBOARD CARD-->
+                                            <div class="card">
+                                              <div id="task_assigned_ao" class="card-header">Task Assigned</div>
+                                                <div class="card-body" style="min-height: 70% !important;"> 
+                                                  <ul id="assignedTaskList" class="list-group list-group-flush" style="min-height: 60vh !important; width: 100%;"> <!-- LIST OF TASKS -->
+                                                      <!--TASK LIST ITEMS HERE-->
+                                                      <li id="assignedTaskItem" class="list-group-item d-flex justify-content-between align-items-center">
+                                                        <label style="font-weight: 600;" name="assignedTaskListItemTitle" for="task_ao_"></label>
+                                                          <a href="#" class="badge badge-dark" 
+                                                            data-toggle="collapse" data-target="#assignedTaskListData" aria-expanded="false" 
+                                                            aria-controls="assignedTaskListData"><i class="fas fa-angle-down fa-lg" style="color: #b8a136 !important; padding: 0px;"></i></a>
+                                                      </li>
+                                                      <div class="collapse" id="assignedTaskListData" style="width: 98%;"> <!-- TASK  Contents -->
+                                                              <div class="row"><!-- collapsing description and stats -->
+                                                                <div class="col-sm-6"> <!-- Scrolling Description -->
+                                                                  <div class="card card-body">
+                                                                    <div id="assignedTaskListDescription" class="scrollDescription" style="min-height: 275px !important;">
+                                                                    </div>
+                                                                  </div>
+                                                                </div>
+                                                                <div class="col-sm-6">
+                                                                  <table id="assignedTaskListTable" style="border: solid black 2px; width: 100%; text-align: left; margin: 3% 0% 1% 0%;">
+                                                                    <tr>
+                                                                      <td class="td1">Task Status:</td>
+                                                                      <td id="assignedTaskStatus"></td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                      <td class="td1">Suspense Date:</td>
+                                                                      <td id="assignedSusDate"></td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                      <td class="td1">OPR:</td>
+                                                                      <td id="assignedTaskOPR"></td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="td1">OCR:</td>
+                                                                        <td id="assignedTaskOCR"></td>
+                                                                      </tr>
+                                                                    <tr>
+                                                                      <td class="td1">AO:</td>
+                                                                      <td id="assignedTaskAOName"></td>
+                                                                    </tr>
+                                                                  </table>
+                                                                  <div style="margin-top: 5px; padding: 5px; float: right;">
+                                                                    <button type="button" class="btn btn-secondary btn-sm links" onclick="openView(event, 'task')">EDIT</button>
+                                                                    </div>
+                                                                </div>
+                                                              </div>
+                                                      </div>
+                                                  </ul>
+                                                </div>
+                                              <!--End Card Body For TASKS ASSIGNED -->
+                                            </div>
+                                        </div>
+                                    </div>
+                              <!--END DASHBOARD PAGE -->
+                              </div>
+<!--MAIN VIEWS--> 
+                              <div id="views" class="contentView">
+                                <div class="row">
+                    <!-- LOE VIEW -->
+                                      <div id="loeView" class="col" style="display: block;" >
+                <!-- LOE 1 PEOPLE DESCRIPTION -->
+                                        <div class="card" style="box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2) !important; ">
+                                          <div class="card-header" id="loe_title_"></div>
+                                          <div class="card-body" style="min-height: 35vh !important; padding: 12px !important">
+                                            <div class="scrollDescription" id="loe_description" style="min-height: 30vh !important;">
+                                            </div>
+                                          </div>
+                                        </div>
+                <!-- OBJECTIVE LIST (DEFAULT) show with HIDE of IMO and IMO EFFECT onClick of PEOPLE OBJECTIVE SIDENAV -->
+                                        <div class="card" id="pplObj"style="box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2) !important; margin-top: 20px !important;">
+                                            <div class="card-header">OBJECTIVES</div>
+                                            <div class="card-body">
+                                                <ul id="objectives_list_" class="list-group list-group-flush" style="min-height: 375px !important;">
+                                                  <li id="objectives_listItem_" class="list-group-item d-flex justify-content-between align-items-center">
+                                                    <label style="font-weight: 600;"></label>
+                                                    <a href="#" class="badge badge-dark" 
+                                                        data-toggle="collapse" data-target="#objectives_listItem_info_" aria-expanded="false" 
+                                                        aria-controls="objectives_listItem_info_"><i class="fas fa-angle-down fa-lg" style="color: #b8a136 !important; padding: 0px;"></i></a>
+                                                  </li>
+                                                    <div class="collapse" id="objectives_listItem_info_"> <!-- Objective 1 Contents -->
+                                                        <div class="row no-gutters"><!-- collapsing description and stats -->
+                                                          <div class="col-sm-7"> <!-- Scrolling Description -->
+                                                            <div class="card card-body">
+                                                              <div id="obj_listItme_desc_" class="scrollDescription">
+                                                              </div>
+                                                            </div>
+                                                          </div>
+                                                          <div class="col-sm-5">
+                                                            <!-- Table of Stats from Objective 1 -->
+                                                            <table class="objective_table_info_" style="border: solid black 2px; width: 98%; text-align: left; margin: 5% 2% 3% 0%;">
+                                                              <tr>
+                                                                <td class="td1">OPR:</td>
+                                                                <td id="objectiveOPR"></td>
+                                                              </tr>
+                                                              <tr>
+                                                                <td class="td1">OCR:</td>
+                                                                <td id="objectiveOCR"></td>
+                                                              </tr>
+                                                            </table>
+                                                          </div>
+                                                        </div>
+                                                    </div>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                      </div>
+                    <!-- OBJECTIVE VIEW -->
+                                      <div id="objectiveView" class="col" style="display: none;">
+                                        <!-- OBJECTIVE DESCRIPTION CARD -->
+                                                  <div class="card" style="box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2) !important; ">
+                                                    <div class="card-header" id="objectiveTitle"></div>
+                                                    <div class="card-body" style="min-height: 35vh !important; padding: 12px !important">
+                                                      <div class="scrollDescription" id="objectiveDescription" style="min-height: 30vh !important;">
+                                                      </div>
+                                                    </div>
+                                                  </div>
+                                        <!-- IMO LIST-->
+                                                  <div class="card" style="box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2) !important; margin-top: 20px !important;">
+                                                      <div class="card-header">IMO</div>
+                                                      <div class="card-body">
+                                                          <ul class="list-group list-group-flush" style="min-height: 325px !important;">
+                                                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                                              <label style="font-weight: 600;"></label>
+                                                              <a href="#" class="badge badge-dark" 
+                                                                  data-toggle="collapse" data-target="#imo_" aria-expanded="false" 
+                                                                  aria-controls="collapseExample"><i class="fas fa-angle-down fa-lg" style="color: #b8a136 !important; padding: 0px;"></i></a>
+                                                            </li>
+                                                              <div class="collapse" id="imo_"> <!-- Objective 1 Contents -->
+                                                                  <div class="row no-gutters"><!-- collapsing description and stats -->
+                                                                    <div class="col-sm-6"> <!-- Scrolling Description -->
+                                                                      <div class="card card-body">
+                                                                        <div id="imoDescription_" class="scrollDescription">
+                                                                        </div>
+                                                                      </div>
+                                                                    </div>
+                                                                    <div class="col-sm-6">
+                                                                      <!-- Table of Stats from Objective 1 -->
+                                                                      <table class="objective_table_info_" style="border: solid black 2px; width: 98%; text-align: left; margin: 5% 2% 3% 0%;">
+                                                                        <tr>
+                                                                          <td class="td1"">OPR:</td>
+                                                                          <td id="imoOPR"></td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                          <td class="td1">OCR:</td>
+                                                                          <td id="imoOCR"></td>
+                                                                        </tr>
+                                                                      </table>
+                                                                    </div>
+                                                                  </div>
+                                                              </div>
+                                                          </ul>
+                                                      </div>
+                                                  </div>
+                                      </div>
+                    <!-- IMO VIEW -->
+                                      <div id="imoView" class="col" style="display: none;">
+                                        <!-- OBJECTIVE DESCRIPTION CARD -->
+                                                  <div class="card" style="box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2) !important; ">
+                                                    <div class="card-header" id="imoTitle_"></div>
+                                                    <div class="card-body" style="min-height: 35vh !important; padding: 12px !important">
+                                                      <div class="scrollDescription" id="imoDescription_" style="min-height: 30vh !important;">
+                                                      </div>
+                                                    </div>
+                                                  </div>
+                                        <!-- EFFECT LIST-->
+                                                  <div class="card" id="pplObj"style="box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2) !important; margin-top: 20px !important;">
+                                                      <div class="card-header">IMO EFFECTS</div>
+                                                      <div class="card-body">
+                                                          <ul class="list-group list-group-flush" style="min-height: 375px !important;">
+                                                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                                              <label style="font-weight: 600;" for="imoEffectsTitle_"></label>
+                                                              <a href="#" class="badge badge-dark" 
+                                                                  data-toggle="collapse" data-target="#imoEffects_" aria-expanded="false" 
+                                                                  aria-controls="imoEffects_"><i class="fas fa-angle-down fa-lg" style="color: #b8a136 !important; padding: 0px;"></i></a>
+                                                            </li>
+                                                              <div class="collapse" id="imoEffects_"> <!-- Objective 1 Contents -->
+                                                                  <div class="row no-gutters"><!-- collapsing description and stats -->
+                                                                    <div class="col-sm-6"> <!-- Scrolling Description -->
+                                                                      <div class="card card-body">
+                                                                        <div id="imoEffectsInfo" class="scrollDescription">
+                                                                        </div>
+                                                                      </div>
+                                                                    </div>
+                                                                    <div class="col-sm-6">
+                                                                      <!-- Table of Stats from Objective 1 -->
+                                                                      <table style="border: solid black 2px; width: 100%; text-align: left; margin: 5% 2% 3% 0%;">
+                                                                        <tr>
+                                                                          <td class="td1">OPR:</td>
+                                                                          <td id="effectsOPR"></td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                          <td class="td1">OCR:</td>
+                                                                          <td id="effectsOCR"></td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                          <td class="td1">Suspense Date:</td>
+                                                                          <td id="effectsSusDate"></td>
+                                                                        </tr>
+                                                                      </table>
+                                                                      <div style="margin-top: 12%; padding: 5px; float: right;">
+                                                                        <button type="button" onclick="openView(event, 'effect')" class="btn btn-secondary btn-sm">VIEW</button>
+                                                                      </div>
+                                                                    </div>
+                                                                  </div>
+                                                              </div>
+                                                          </ul>
+                                                      </div>
+                                                  </div>
+                                      </div>
+                                      <!-- PEOPLE PROGRESS, DECISIONS and MILESTONS LIST-->
+                                      <div class="col">
+                                        <!-- LOE PEOPLE PROGRESS BAR-->
+                                            <label style="font-weight: 600 !important; font-size: 20px !important;" for="loe_progress_complete_">PROGRESS COMPLETED</label>
+                                                  <div class="progress" style="width: 95%; height: 20px; margin: 0 2% 0 2%; box-shadow: 3px 4px 5px 2px rgba(0,0,0,0.27)
+                                                  !important;">
+                                                    <div id="loe_progress_complete_" class="progress-bar progress-bar-striped progress-bar-animated bg-warning" role="progressbar" style="width: 62%; height: 20px; font-size: 18px !important; font-weight: 800 !important; color: black !important; box-shadow: 3px 4px 5px 2px rgba(0,0,0,0.27)
+                                                    !important;" aria-valuenow="62" aria-valuemin="0" aria-valuemax="100">62%
+                                                    </div>
+                                                  </div>
+                                                  <!-- PEOPLE DECISIONS-->
+                                                  <div class="card" style="margin-top: 30px !important; box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2) !important;">
+                                                    <div class="card-header">DECISIONS</div>
+                                                      <div class="card-body">
+                                                          <ul id="decisions_list_" class="list-group list-group-flush">
+                                                            <li  id="decisions_listItem_"class="list-group-item d-flex justify-content-between align-items-center">
+                                                              <label style="font-weight: 600;" for="decision_listItem_info_"></label>
+                                                              <a href="#" class="badge badge-dark" 
+                                                                  data-toggle="collapse" data-target="#decision_listItem_info_" aria-expanded="false" 
+                                                                  aria-controls="decision_listItem_info_"><i class="fas fa-angle-down fa-lg" style="color: #b8a136 !important; padding: 0px;"></i></a>
+                                                            </li>
+                                                            <div class="collapse" id="decision_listItem_info_"> <!-- DECISION 1 Contents -->
+                                                                  <div class="row no-gutters"><!-- collapsing description and stats -->
+                                                                    <div class="col-sm-6"> <!-- Scrolling Description -->
+                                                                      <div class="card card-body">
+                                                                        <div id="decision_desc_" class="scrollDescription">
+                                                                        </div>
+                                                                      </div>
+                                                                    </div>
+                                                                    <div class="col-sm-6">
+                                                                      <!-- Table of Stats from Decisions 1 -->
+                                                                      <table id="decision_table_info" style="border: solid black 2px; width: 100%; text-align: left; margin: 3% 0% 3% 0%;">
+                                                                        <tr>
+                                                                          <td class="td1">Decision By:</td>
+                                                                          <td id="decisionBy"></td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                          <td class="td1">Decision Date:</td>
+                                                                          <td id="decisionDate"></td>
+                                                                        </tr>
+                                                                      </table>
+                                                                      <div style="margin-top: 20%; padding: 5px; float: right;">
+                                                                        <!-- Always Visible Add Button-->
+                                                                        <button type="button" class="btn btn-primary btn-sm links" onclick="openView(event, 'decision')">NEW</button>
+                                                                        <!-- Edit button will only show when a decision is selected to edit-->
+                                                                        <button type="button" class="btn btn-secondary btn-sm links" onclick="openView(event, 'decision')">EDIT</button>
+                                                                      </div>
+                                                                    </div>
+                                                                  </div>
+                                                            </div>
+                                                          </ul>
+                                                      </div>
+                                                  </div>
+                                                  <!-- PEOPLE MILESTONES-->
+                                                  <div class="card" style="margin-top: 10px !important; box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2) !important;">
+                                                    <div class="card-header">MILESTONES</div>
+                                                      <div class="card-body">
+                                                          <ul id="milestones_list_" class="list-group list-group-flush">
+                                                            <li id="milestones_listItem_" class="list-group-item d-flex justify-content-between align-items-center">
+                                                              <label style="font-weight: 600;"></label>
+                                                              <a href="#" class="badge badge-dark" 
+                                                                  data-toggle="collapse" data-target="#milestones_listItem_info_" aria-expanded="false" 
+                                                                  aria-controls="milestones_listItem_info_"><i class="fas fa-angle-down fa-lg" style="color: #b8a136 !important; padding: 0px;"></i></a>
+                                                            </li>
+                                                              <div id="milestones_listItem_info_"class="collapse"> <!-- DECISION 1 Contents -->
+                                                                  <div class="row no-gutters"><!-- collapsing description and stats -->
+                                                                    <div class="col-sm-6"> <!-- Scrolling Description -->
+                                                                      <div class="card card-body">
+                                                                        <div id="milestones_desc_" class="scrollDescription">
+                                                                        </div>
+                                                                      </div>
+                                                                    </div>
+                                                                    <div class="col-sm-6">
+                                                                      <table id="milestones_table_info" style="border: solid black 2px; width: 100%; text-align: left; margin: 3% 0% 3% 0%;">
+                                                                        <tr>
+                                                                          <td class="td1">Milestones Date:</td>
+                                                                          <td id="milestoneDate"></td>
+                                                                        </tr>
+                                                                      </table>
+                                                                      <div style="margin-top: 20%; padding: 5px; float: right;">
+                                                                        <!-- Always Visible Add Button-->
+                                                                        <button type="button" class="btn btn-primary btn-sm links" onclick="openView(event, 'milestone')">NEW</button>
+                                                                        <!-- Edit button will only show when a milestone is selected to edit-->
+                                                                        <button type="button" class="btn btn-secondary btn-sm links" onclick="openView(event, 'milestone')">EDIT</button>
+                                                                      </div>
+                                                                    </div>
+                                                                  </div>
+                                                              </div>
+                                                        </ul>
+                                                      </div>
+                                                  </div>
+                                      </div>
+                                </div>
+                              </div>
+<!--EFFECTS VIEW-->
+                              <div id="effect" class="contentView">
+                                <div class="row">
+                      <!-- EFFECT DESCRIPTION-->
+                                      <div class="col" style="min-width: 65% !important;">
+                                        <div class="card" style="box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2) !important;">
+                                          <div class="card-header">EFFECT  -.-.-.-</div>
+                                          <table style="width: 100%;">
+                                            <tr>
+                                              <td class="td1"><label>OPR:</label><span style="float: right; margin-right: 10px; margin-top: 4px;">
+                                                <select id="effectOPRselect" style="min-width: 150px !important;">
+                                                <option value="">Select OPR . . . </option>
+                                                </select>
+                                                </span>
+                                              </td>
+                                              <td class="td1"><label>OCR: </label><span style="float: right; margin-right: 10px; margin-top: 4px;">
+                                                <select id="effectOCRselect" style="min-width: 150px !important;">
+                                                  <option value="">Select OCR . . . </option>
+                                                </select>
+                                                </span>
+                                              </td>
+                                              <td class="td1"><label>Suspense Date:</label>
+                                                <input id="effectSusDateSel" type="text" class="date" style="margin: 5px;">
+                                              </td>
+                                            </tr>
+                                          </table>
+                                          <div class="card-body" style="max-height: 350px !important; min-width: 98%; margin: 2%;">
+                                            <div class="scrollDescription" id="effectDescription" style="min-height: 125px !important; max-height: 125px !important; margin: 2%;">
+                                            </div>
+                                            <div>
+                                              <textarea class="scrollDescription" id="effectInput" placeholder="Effect Description" style="min-height: 80px !important; max-height: 80px !important; min-width: 90%; margin: 1% 5%;"></textarea>
+                                            </div>
+                                            <button type="button" id="submitEffect" class="btn btn-secondary btn-sm" style="margin: 0px 0px 10px 5px !important; padding: 4px 16px; font-size: 14px; font-weight: 700;">SUBMIT</button>
+                                          </div>
+                                        </div>
+                                      </div>
+                     <!-- PEOPLE TASK PROGRESS-->
+                                      <div class="col" style="min-width: 35% !important;">
+                                            <label style="font-weight: 600 !important; font-size: 20px !important;">PROGRESS COMPLETED</label>
+                                              <div class="progress" style="width: 95%; height: 20px; margin: 0 2% 0 2%; box-shadow: 3px 4px 5px 2px rgba(0,0,0,0.27)
+                                                  !important;">
+                                                    <div class="progress-bar progress-bar-striped progress-bar-animated bg-success" role="progressbar" style="width: 74%; height: 20px; font-size: 18px !important; font-weight: 800 !important; color: black !important; box-shadow: 3px 4px 5px 2px rgba(0,0,0,0.27)
+                                                    !important;" aria-valuenow="74" aria-valuemin="0" aria-valuemax="100">74%</div>
+                                              </div>
+                                      </div>
+                                </div>
+                                <div class="row" style="max-width: 80%; margin: 1% 10%;">
+                                  <!-- TASK LIST FOR EFFECT VIEW-->
+                                        <div class="col">
+                                          <div class="card" style="margin-top: 30px !important; box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2) !important;">
+                                            <div class="card-header">TASKS</div>
+                                              <div class="card-body">
+                                                <ul class="list-group list-group-flush" style="min-height: 170px !important; max-height: 320px !important;">
+                                                  <li class="list-group-item d-flex justify-content-between align-items-center">
+                                                              <label style="font-weight: 600;" for="taskTitle_"></label>
+                                                              <a href="#" class="badge badge-dark" 
+                                                                  data-toggle="collapse" data-target="#task_" aria-expanded="false" 
+                                                                  aria-controls="task_"><i class="fas fa-angle-down fa-lg" style="color: #b8a136 !important; padding: 0px;"></i></a>
+                                                  </li>
+                                                    <div class="collapse" id="task_"> <!-- TASK 1 Contents -->
+                                                                  <div class="row no-gutters"><!-- collapsing description and stats -->
+                                                                    <div class="col-sm-6"> <!-- Scrolling Description -->
+                                                                      <div class="card card-body">
+                                                                        <div class="scrollDescription" style="max-height: 220px !important;">
+                                                                        </div>
+                                                                      </div>
+                                                                    </div>
+                                                                    <div class="col-sm-6">
+                                                                      <!-- Table of Stats from Decisions 1 -->
+                                                                      <table style="border: solid black 2px; width: 100%; text-align: left; margin: 3% 0% 3% 0%;">
+                                                                        <tr>
+                                                                          <td class="td1">Task Status:</td>
+                                                                          <td id="effectTaskStatus"></td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                          <td class="td1">OPR:</td>
+                                                                          <td id="effectTaskOPR"></td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                          <td class="td1">OCR:</td>
+                                                                          <td id="effectTaskOCR"></td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                          <td class="td1">Suspense Date:</td>
+                                                                          <td id="effectTaskSusDate"></td>
+                                                                        </tr>
+                                                                      </table>
+                                                                      <div style="margin: 1% auto; float: right;">
+                                                                        <button type="button" class="btn btn-secondary btn-sm" data-toggle="tab" data-target="#taskView" style="margin-right: 10%; float: right;">VIEW</button>
+                                                                      </div>
+                                                                    </div>
+                                                                  </div>
+                                                    </div>
+                                                </ul>
+                                              </div>
+                                          </div>
+                                        </div>
+                                </div>
+                              </div>
+<!--TASK VIEW-->
+                              <div id="task" class="contentView">
+                                <div class="row">
+                                      <!-- TASK DESCRIPTION-->
+                                      <div class="col">
+                                        <!-- TASK DESCRIPTION -->
+                                        <div class="card" style="box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2) !important; min-height: 250px; margin-top: 4% !important;">
+                                          <div class="card-header id=taskName_0"></div>
+                                          <div class="card-body">
+                                            <table style="width: 100%;">
+                                              <tbody>
+                                                <td class="td1">
+                                                  <label for="taskStatusSelect" style="display: inline-block; font-size: 1.3em; padding-left: 5%; font-weight: 700;">Status: </label>
+                                                  <select class="statusList" id="taskStatusSelect" style="float: right; width: 70%; margin-right: 10px; margin-top: 5px;">
+                                                  </select>
+                                                </td>
+                                              </tbody>
+                                            </table>
+                                            <div class="scrollDescription" id="taskDescription_0" style="min-height: 270px !important; max-height: 270px !important;">
+                                            </div>
+                                            <div class="scrollDescription">
+                                              <textarea class="scrollDescription" id="taskDescInput_0" placeholder="New Task Description" style="min-height: 75px !important; max-height: 78px !important; min-width: 98%; margin: 1%;"></textarea>
+                                            </div>
+                                            <button type="button" id="submitTaskDesc" class="btn btn-secondary btn-sm" style="margin: 0px 0px 10px 5px !important; padding: 4px 16px; font-size: 14px; font-weight: 700;">SUBMIT</button>
+                                          </div>
+                                        </div>
+                                        <!-- REMARKS FOR TASK DESCRIPTION -->
+                                        <div class="card" style="box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2) !important; margin-top: 4% !important; ">
+                                          <div class="card-header " >Remarks</div>
+                                          <div class="card-body">
+                                            <div class="scrollDescription" id="taskRemarks" style="min-height: 250px !important; max-height: 250px !important;">
+                                            </div>
+                                            <div class="scrollDescription">
+                                              <textarea class="scrollDescription" id="remarkInput" placeholder="New Remarks Here" style="min-height: 75px !important; max-height: 78px !important; min-width: 98%; margin: 1%;"></textarea>
+                                            </div>
+                                            <button type="button" id="submitRemark" onclick="addTimeStamp()" class="btn btn-secondary btn-sm" style="margin: 0px 0px 10px 5px !important; padding: 4px 16px; font-size: 14px; font-weight: 700;">SUBMIT</button>
+                                          </div>
+                                        </div>
+                                        <!-- GUIDANCE FOR TASK DESCRIPTION -->
+                                        <div class="card" style="box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2) !important; min-height: 210px; margin-top: 4% !important;">
+                                          <div class="card-header">Guidance</div>
+                                          <div class="card-body">
+                                            <div class="scrollDescription" id="taskGuidance" style="min-height: 210px !important; max-height: 250px !important;">
+                                            </div>
+                                            <div class="scrollDescription">
+                                              <textarea class="scrollDescription" id="guidanceInput" placeholder="New Guidance Here" style="min-height: 75px !important; max-height: 78px !important; min-width: 98%; margin: 1%;"></textarea>
+                                            </div>
+                                            <button type="button" id="submitGuidance" class="btn btn-secondary btn-sm" style="margin: 0px 0px 10px 5px !important; padding: 4px 16px; font-size: 14px; font-weight: 700;">SUBMIT</button>
+                                          </div>
+                                        </div>
+                                      </div>
+                                      <!-- PEOPLE TASK PROGRESS-->
+                                      <div class="col">
+                                            <label style="font-weight: 600 !important; font-size: 20px !important;">PROGRESS COMPLETED</label>
+                                                  <div class="progress" style="width: 95%; height: 20px; margin: 0 2% 0 2%; box-shadow: 3px 4px 5px 2px rgba(0,0,0,0.27)
+                                                  !important;">
+                                                    <div class="progress-bar progress-bar-striped progress-bar-animated bg-warning" role="progressbar" style="width: 38%; height: 20px; font-size: 18px !important; font-weight: 800 !important; color: black !important; box-shadow: 3px 4px 5px 2px rgba(0,0,0,0.27)
+                                                    !important;" aria-valuenow="38" aria-valuemin="0" aria-valuemax="100">38%</div>
+                                                  </div>
+                                                  <table style="margin-top: 3%; border: solid grey 3px; width: 100%; font-size: .85em !important; ">
+                                                    <tbody>
+                                                      <tr>
+                                                        <td style="padding: 5px; max-width: 260px !important; ">
+                                                          <label>OPR: </label>
+                                                          <span style="float: right; margin-right: 10px; margin-top: 4px;">
+                                                            <select id="selectOpr" style="min-width: 200px !important;">
+                                                              <option value="">Select OPR . . . </option>
+                                                            </select>
+                                                          </span>
+                                                        </td>
+                                                        <td>
+                                                          <label>Created Date: </label><input type="text"class="date" style="float: right; margin-right: 5px;">
+                                                        </td>
+                                                      </tr>
+                                                      <tr>
+                                                        <td style="padding: 5px; max-width: 260px !important;">
+                                                          <label>OCR: </label><span style="float: right; margin-right: 10px; margin-top: 4px;">
+                                                            <select id="selectOcr" style="min-width: 200px !important;">
+                                                              <option value="">Select OCR . . . </option>
+                                                            </select>
+                                                          </span>
+                                                        </td>
+                                                        <td>
+                                                          <label>Start Date: </label><input type="text"class="date" style="float: right; margin-right: 5px;">
+                                                        </td>
+                                                      </tr>
+                                                      <tr>
+                                                        <td style="padding: 5px; max-width: 260px !important;">
+                                                          <label>Action Officer: </label><span style="float: right; margin-right: 10px; margin-top: 4px;">
+                                                            <input type="text" placeholder="AO People Picker">
+                                                          </span>
+                                                        </td>
+                                                        <td>
+                                                          <label>Suspense Date: </label><input type="text"class="date" style="float: right; margin-right: 5px;">
+                                                        </td>
+                                                      </tr>
+                                                      <tr>
+                                                        <td style="padding: 5px; max-width: 260px !important;">
+                                                          <label>AO Email: </label><span style="float: right; margin-right: 10px; margin-top: 4px;">
+                                                            <input class="email" name="email" type="email" placeholder="aoEmail@socom.mil"></span>
+                                                        </td>
+                                                        <td>
+                                                          <label>Completion Date: </label><input type="text"class="date" style="float: right; margin-right: 5px;">
+                                                        </td>
+                                                      </tr>
+                                                      <tr style="border: none;"> 
+                                                        <td style="padding: 5px; max-width: 260px !important;">
+                                                          <label>AO Phone Number: </label><span style="float: right; margin-right: 10px; margin-top: 4px;">
+                                                          <input class="phone" name="phone-number" type="text" maxlength="14" style="max-width: 130px; text-align: center;" placeholder="(XXX) XXX-XXXX">
+                                                          </span>
+                                                        </td>
+                                                      </tr>
+                                                    </tbody>
+                                                  </table>
+                                            <!--EFFECTS LIST FOR TASK VIEW -->
+                                                  <div class="card" style="margin-top: 2% !important; box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2) !important;">
+                                                    <div class="card-header">Effects</div>
+                                                        <div class="card-body">
+                                                          <ul class="list-group list-group-flush">
+                                                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                                              <label style="font-weight: 600;" for="effect_title"></label>
+                                                              <a href="#" class="badge badge-dark" 
+                                                                  data-toggle="collapse" data-target="#effect_" aria-expanded="false" 
+                                                                  aria-controls="effect_"><i class="fas fa-angle-down fa-lg" style="color: #b8a136 !important; padding: 0px;"></i></a>
+                                                            </li>
+                                                            <div class="collapse" id="effect_"> <!-- TASK 1 Contents -->
+                                                            <div class="row no-gutters"><!-- collapsing description and stats -->
+                                                              <div class="col-sm-6"> <!-- Scrolling Description -->
+                                                                <div class="card card-body">
+                                                                  <div class="scrollDescription" style="max-height: 220px !important;">
+                                                                  </div>
+                                                                </div>
+                                                              </div>
+                                                              <div class="col-sm-6">
+                                                                <!-- Table of Stats from Decisions 1 -->
+                                                                <table style="border: solid black 2px; width: 100%; text-align: left; margin: 3% 0% 3% 0%;">
+                                                                  <tr>
+                                                                    <td class="td1">Suspense Date:</td>
+                                                                    <td id="effectSusDate"></td>
+                                                                  </tr>
+                                                                  <tr>
+                                                                    <td class="td1">OPR:</td>
+                                                                    <td id="effectOPR"></td>
+                                                                  </tr>
+                                                                  <tr>
+                                                                    <td class="td1">OCR:</td>
+                                                                    <td id="effectOCR"></td>
+                                                                  </tr>
+                                                                </table>
+                                                                <div style="margin: 1% auto; float: right;">
+                                                                  <button type="button" class="btn btn-secondary btn-sm" data-toggle="modal" data-target="#effectModal" style="margin-right: 10%; float: right;">VIEW</button>
+                                                                </div>
+                                                              </div>
+                                                            </div>
+                                                            </div>
+                                                          </ul>
+                                                        </div>
+                                                        <div class="card-footer text-muted" style="padding-bottom: 0px;">
+                                                          <div class="row" >
+                                                            <div class="col">
+                                                              <button type="button" class="btn btn-primary btn-sm links" onclick="openView(event, 'effect')"style="margin-top: 4px; margin-right:     22px; padding: 4px 16px; font-size: 14px; font-weight: 700;">ADD</button>
+                                                              <button type="button" class="btn btn-danger btn-sm" style="margin-top: 4px; padding: 4px 16px; font-size: 14px; font-weight: 700;   ">REMOVE</button>
+                                                            </div>
+                                                            <div class="col">
+                                                              <button type="button" class="btn btn-secondary btn-sm links" style="margin-top: 4px; margin-right: 8px; float: right; padding: 4px 16px;    font-size: 14px; font-weight: 700;" onclick="openView(event, 'effect')">EDIT</button>
+                                                            </div>
+                                                          </div>
+                                                        </div>
+                                                  </div>
+                                            <!--MOP LIST FOR TASK VIEW -->
+                                                  <div class="card" style="margin-top: 2% !important; box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2) !important;">
+                                                    <div class="card-header " >MOP</div>
+                                                        <div class="card-body">
+                                                          <ul class="list-group list-group-flush">
+                                                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                                              <label style="font-weight: 600;" for="mop_title"></label>
+                                                              <a href="#" class="badge badge-dark" 
+                                                                  data-toggle="collapse" data-target="#mop_" aria-expanded="false" 
+                                                                  aria-controls="collapseExample"><i class="fas fa-angle-down fa-lg" style="color: #b8a136 !important; padding: 0px;"></i></a>
+                                                            </li>
+                                                            <div class="collapse" id="mop_"> <!-- TASK 1 Contents -->
+                                                            <div class="row no-gutters"><!-- collapsing description and stats -->
+                                                              <div class="col-sm-6"> <!-- Scrolling Description -->
+                                                                <div class="card card-body">
+                                                                  <div class="scrollDescription" style="max-height: 220px !important;">
+                                                                  </div>
+                                                                </div>
+                                                              </div>
+                                                              <div class="col-sm-6">
+                                                                <!-- Table of Stats from Decisions 1 -->
+                                                                <table style="border: solid black 2px; width: 100%; text-align: left; margin: 3% 0% 3% 0%;">
+                                                                  <tr>
+                                                                    <td class="td1">TASK Status:</td>
+                                                                    <td id="mopTaskStatus"></td>
+                                                                  </tr>
+                                                                  <tr>
+                                                                    <td class="td1">Suspense Date:</td>
+                                                                    <td id="mopTaskSusDate"></td>
+                                                                  </tr>
+                                                                  <tr>
+                                                                    <td class="td1">OPR:</td>
+                                                                    <td id="mopTaskOPR"></td>
+                                                                  </tr>
+                                                                  <tr>
+                                                                    <td class="td1">OCR:</td>
+                                                                    <td id="mopTaskOCR"></td>
+                                                                  </tr>
+                                                                  <tr>
+                                                                    <td class="td1">AO:</td>
+                                                                    <td id="mopTaskAOName"></td>
+                                                                  </tr>
+                                                                </table>
+                                                                <div style="margin: 1% auto; float: right;">
+                                                                  <button type="button" class="btn btn-secondary btn-sm" data-toggle="tab" data-target="#mopView" style="margin-right: 10%; float: right;">VIEW</button>
+                                                                </div>
+                                                              </div>
+                                                            </div>
+                                                              </div>
+                                                          </ul>
+                                                        </div>
+                                                        <div class="card-footer text-muted" style="padding-bottom: 0px;">
+                                                          <div class="row" >
+                                                            <div class="col">
+                                                              <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#taskModal" style="margin-top: 4px; margin-right:     22px; padding: 4px 16px; font-size: 14px; font-weight: 700;">ADD</button>
+                                                              <button type="button" class="btn btn-danger btn-sm" style="margin-top: 4px; padding: 4px 16px; font-size: 14px; font-weight: 700;   ">REMOVE</button>
+                                                            </div>
+                                                            <div class="col">
+                                                              <button type="button" class="btn btn-secondary btn-sm links" style="margin-top: 4px; margin-right: 8px; float: right; padding: 4px 16px;    font-size: 14px; font-weight: 700;" onclick="openView(event, 'milestone')">EDIT</button>
+                                                            </div>
+                                                          </div>
+                                                        </div>
+                                                  </div>
+                                            <!--SOLUTION INPUT -->
+                                                  <div class="card" style="margin-top: 2% !important; box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2) !important;">
+                                                    <div class="card-header">Solution</div>
+                                                    <div class="card-body" style="max-height: 290px !important;">
+                                                      <div class="scrollDescription" id="solution" style="min-height: 130px !important; max-height: 130px !important;">
+                                                      </div>
+                                                      <div>
+                                                        <textarea class="scrollDescription" id="solutionInput" placeholder="New Solution Here" style="min-height: 75px !important; max-height: 78px !important; min-width: 98%; margin: 1%;"></textarea>
+                                                      </div>
+                                                      <button type="button" id="submitSolution" class="btn btn-secondary btn-sm" style="margin: 0px 0px 10px 5px !important; padding: 4px 16px; font-size: 14px; font-weight: 700;">SUBMIT</button>
+                                                    </div>
+                                                  </div>
+                                      </div>
+                                </div>
+                              </div>
+<!--MOP VIEW-->
+                              <div id="mop" class="contentView">
+                                <div class="form-group">
+                                  <div class="row">
+                                    <div class="col">
+                                    <div class="card" style="margin-top: 10% !important; box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2) !important; width: 85%; margin-left: 15% !important;">
+                                      <div id="mopTitle_" class="card-header" ></div>
+                                      <div class="card-body" style="max-height: 350px !important;">
+                                        <div class="scrollDescription" id="mopDescription" style="min-height: 150px !important; max-height: 150px !important;">
+                                        </div>
+                                        <div>
+                                          <textarea class="scrollDescription" id="mopInput" placeholder="New Task Description" style="min-height: 75px !important; max-height: 78px !important; min-width: 98%; margin: 1%;"></textarea>
+                                        </div>
+                                        <button type="button" id="submitMOP" class="btn btn-secondary btn-sm" style="margin: 0px 0px 10px 5px !important; padding: 4px 16px; font-size: 14px; font-weight: 700;">SUBMIT</button>
+                                      </div>
+                                    </div>
+                                    <div style="width: 80%; margin: 10% 18%!important; border: solid 1px; border-radius: 4px; padding: 2%; ">
+                                    <label for="taskMop">TASK: </label>
+                                      <button class="btn btn-outline-secondary btn-sm" id="taskMop" data-toggle="modal" data-target="#taskModal" style="float: right;">SELECT</button>
+                                    </div>
+                                    </div>
+                                    <div class="col">
+                                      <div style="width: 60%; margin: 5% 10%;">
+                                        <label class="labelContainer" for="mopSDate" style="display: inline-block; font-weight: 700;">Suspense Date:</label>
+                                        <input id="mopSDate" class="date" type="text" style="width: 60%; float: right;"></input>
+                                      </div>
+                                      <div class="inputGroup" style="width: 60%; margin: 10% 30%;">
+                                          <div class="switchToggle">
+                                            <input type="checkbox" id="switch">
+                                            <label for="switch">Toggle</label>
+                                        </div>
+                                        </div>
+                                      <button type="button" id="saveMopTask" class="btn btn-primary btn-sm" 
+                                    style="margin: 30% 10%; padding: 4px 16px; font-size: 14px; font-weight: 700; float: right;">SAVE</button>
+                                    </div>
+                                    </div>
+                                    
+                                  </div>
+                                </div>
+<!--MILESTONE VIEW-->
+                              <div id="milestone" class="contentView">
+                                <div class="row">
+                                  <div class="col">
+                                      <div id="milestoneName" style="border: solid 2px; font-weight: 800; font-size: 18px; text-align: center; padding: 5px;">
+                                        <select style="min-width: 70% !important; margin: 0% 15%; font-weight: 800; font-size: 18px; text-align: center; padding: 5px;">
+                                          <option value="">Select Milestone . . .</option>
+                                        </select>
+                                      </div>
+                                    <div class="card" id="milestoneAffectedList"style="box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2) !important; margin-top: 20px !important;">
+                                      <div class="card-header">Objectives, IMO's and IMO Effects</div>
+                                      <div class="card-body">
+                                          <ul class="list-group list-group-flush" style="max-height: 250px !important;">
+                                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                              <label style="font-weight: 600;"for="milestoneListTitle_"></label>
+                                              <a href="#" class="badge badge-dark" 
+                                                  data-toggle="collapse" data-target="#milestoneList_" aria-expanded="false" 
+                                                  aria-controls="milestoneList_"><i class="fas fa-angle-down fa-lg" style="color: #b8a136 !important; padding: 0px;"></i></a>
+                                            </li> 
+                                            <div class="collapse" id="milestoneList_"> <!-- Objective 1 Contents -->
+                                                  <div class="row no-gutters"><!-- collapsing description and stats -->
+                                                    <div class="col-sm-6"> <!-- Scrolling Description -->
+                                                      <div class="card card-body">
+                                                        <div id="milestoneListInfo_" class="scrollDescription">
+                                                        </div>
+                                                      </div>
+                                                    </div>
+                                                    <div class="col-sm-6">
+                                                      <!-- Table of Stats from Objective 1 -->
+                                                      <table style="border: solid black 2px; width: 100%; text-align: left; margin: 3% 0% 3% 0%;">
+                                                        <tr>
+                                                          <td class="td1">OPR:</td>
+                                                          <td id="milestoneOPR"></td>
+                                                        </tr>
+                                                        <tr>
+                                                          <td class="td1">OCR:</td>
+                                                          <td id="milestoneOCR"></td>
+                                                        </tr>
+                                                        <tr>
+                                                          <td class="td1">Suspense Date:</td>
+                                                          <td id="milestoneSusDate"></td>
+                                                        </tr>
+                                                      </table>
+                                                      <div style="margin-top: 12%; padding: 5px; float: right;">
+                                                        <button type="button" class="btn btn-secondary btn-sm">VIEW</button>
+                                                      </div>
+                                                    </div>
+                                                  </div>
+                                              </div>
+                                          </ul>
+                                      </div>
+                                      <div class="card-footer text-muted" style="padding-bottom: 0px;">
+                                        <div class="row" >
+                                          <div class="col" style="min-width: 60% !important;">
+                                            <button type="button" class="btn btn-primary btn-sm" style="margin-top: 4px; padding: 4px 16px; font-size: 14px; font-weight: 700;">ADD</button>
+                                            <button type="button" class="btn btn-danger btn-sm" style=" float: right; margin-top: 4px; padding: 4px 16px; font-size: 14px; font-weight: 700;">REMOVE</button>
+                                          </div>
+                                          <div class="col">
+                                            <button type="button" class="btn btn-secondary btn-sm" style="margin-top: 4px; float: right; padding: 4px 16px; font-size: 14px; font-weight: 700;">EDIT</button>
+                                          </div>
+                                        </div>
+                                      </div>
+                                  </div>
+                                  </div>
+                                  
+                                  <div class="col">
+                                    <div style="border: solid 2px; font-weight: 800; font-size: 18px; width: 75%; display: inline-block; padding: 5px;"><lable>Milestone Date:</label><input class="date" type="text" id="msDateInput" style="margin-left: 7%;"></div>
+                                    <button class="btn btn-outline-success btn-md" style="float: right; margin-right: 4%;">SAVE</button>
+                                  </div> 
+                                </div>
+                                <div class="row" style="width: 90%; margin: 2% 5%">
+                                  <div class="col">
+                                  <div class="card" id="milestoneCard" style="margin-top: 2% !important; box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2) !important;">
+                                    <div class="card-body" style="max-height: 400px !important;">
+                                      <div class="scrollDescription" id="milestoneDescription" style="min-height: 200px !important; max-height: 200px !important; margin: 10px;">
+                                        <h5>Milestone Description</h5>
+                                      </div>
+                                      <div>
+                                        <textarea class="scrollDescription" id="milestoneInput" placeholder="New Solution Here" style="min-height: 75px !important; max-height: 78px !important; min-width: 98%; margin: 1%;"></textarea>
+                                      </div>
+                                      <button type="button" id="submitMilestone" class="btn btn-secondary btn-sm" style="margin: 0px 0px 10px 5px !important; padding: 4px 16px; font-size: 14px; font-weight: 700;">SUBMIT</button>
+                                    </div>
+                                  </div>
+                                  </div>
+                                </div>
+                              </div>
+<!--DECISION VIEW-->
+                              <div id="decision" class="contentView">
+                                <div class="row">
+                                  <div class="col">
+                                    <div id="decisionName" style="border: solid 2px; font-weight: 800; font-size: 18px; text-align: center; padding: 5px;">
+                                    <select style="min-width: 70% !important; margin: 0% 15%; font-weight: 800; font-size: 18px; text-align: center; padding: 5px;">
+                                      <option value="">Select Decision . . . </option>
+                                    </select>
+                                    </div>
+                                      <div class="card" id="milestoneAffectedList"style="box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2) !important; margin-top: 20px !important;">
+                                        <div class="card-header">Objectives, IMO's and IMO Effects</div>
+                                        <div class="card-body">
+                                            <ul class="list-group list-group-flush" style="max-height: 250px !important;">
+                                              <li id="decisionListItem" class="list-group-item d-flex justify-content-between align-items-center">
+                                                <label style="font-weight: 600;" for="decisionListTitle_"></label>
+                                                <a href="#" class="badge badge-dark" 
+                                                    data-toggle="collapse" data-target="#decisionList_" aria-expanded="false" 
+                                                    aria-controls="collapseExample"><i class="fas fa-angle-down fa-lg" style="color: #b8a136 !important; padding: 0px;"></i></a>
+                                              </li> 
+                                              <div class="collapse" id="decisionList_"> <!-- Objective 1 Contents -->
+                                                    <div class="row no-gutters"><!-- collapsing description and stats -->
+                                                      <div class="col-sm-6"> <!-- Scrolling Description -->
+                                                        <div class="card card-body">
+                                                          <div id="decisionListInfo_" class="scrollDescription">
+                                                          </div>
+                                                        </div>
+                                                      </div>
+                                                      <div class="col-sm-6">
+                                                        <!-- Table of Stats from Objective 1 -->
+                                                        <table style="border: solid black 2px; width: 100%; text-align: left; margin: 3% 0% 3% 0%;">
+                                                          <tr>
+                                                            <td class="td1">OPR:</td>
+                                                            <td id="decisionOPR"></td>
+                                                          </tr>
+                                                          <tr>
+                                                            <td class="td1">OCR:</td>
+                                                            <td id="decisionOCR"></td>
+                                                          </tr>
+                                                          <tr>
+                                                            <td class="td1">Suspense Date:</td>
+                                                            <td id="decisionSusDate"></td>
+                                                          </tr>
+                                                        </table>
+                                                        <div style="margin-top: 12%; padding: 5px; float: right;">
+                                                          <button type="button" class="btn btn-secondary btn-sm">VIEW</button>
+                                                        </div>
+                                                      </div>
+                                                    </div>
+                                                </div> 
+                                            </ul>
+                                                
+                                        </div>
+                                        <div class="card-footer text-muted" style="padding-bottom: 0px;">
+                                          <div class="row" >
+                                            <div class="col" style="min-width: 60% !important;">
+                                              <button type="button" class="btn btn-primary btn-sm" style="margin-top: 4px; padding: 4px 16px; font-size: 14px; font-weight: 700;">ADD</button>
+                                              <button type="button" class="btn btn-danger btn-sm" style=" float: right; margin-top: 4px; padding: 4px 16px; font-size: 14px; font-weight: 700;">REMOVE</button>
+                                            </div>
+                                            <div class="col">
+                                              <button type="button" class="btn btn-secondary btn-sm edit-btn" style=" display: none; margin-top: 4px; float: right; padding: 4px 16px; font-size: 14px; font-weight: 700;">EDIT</button>
+                                            </div>
+                                          </div>
+                                        </div>
+                                    </div>
+                                  </div>
+                                  <div class="col">
+                                    <button class="btn btn-outline-success btn-md" style="float: right; margin-right: 2%; margin-bottom: 5%;">SAVE</button>
+                                      <table style="margin-top: 5% !important; border: 2px; width: 100%; font-size: .85em !important; ">
+                                        <tbody>
+                                          <tr>
+                                            <td class="td1" style="width: 50% !important;">
+                                              <label>Suspense Date: </label><input type="text"class="date" style="float: right; margin-right: 5px;">
+                                            </td>
+                                            <td style="padding: 5px; max-width: 260px !important;">
+                                              <label for="decisionDeciderSelect">Decider: </label>
+                                              <span style="float: right; margin-right: 10px; margin-top: 4px;">
+                                                <select id="decisionDeciderSelect" style="min-width: 200px !important; text-align: center;">
+                                                  <option value="">Select Decider . . . </option>
+                                                </select>
+                                              </span>
+                                            </td>
+                                          </tr>
+                                          <tr>
+                                            <td class="td1">
+                                              <label for="decisionDeciderDate">Decision Date: </label>
+                                              <input id="decisionDeciderDate" type="text"class="date" style="float: right; margin-right: 5px;">
+                                            </td>
+                                            <td class="td1">
+                                              <label>Decision By: </label>
+                                              <input id="decisionByInput" type="text" style="margin-top: 4px; float: right; margin-right: 10px;">
+                                            </td>
+                                          </tr>
+                                        </tbody>
+                                      </table>
+                                  </div>
+                                </div>
+                                <div class="row" style="width: 90%; margin: 2% 5%">
+                                  <div class="card" id="decisionCard" style="box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2) !important; min-width: 80% !important; margin: 2% 10% !important">
+                                      <div class="card-body">
+                                        <div class="scrollDescription" id="decisionDetail" style="min-height: 180px !important; max-height: 180px !important;">
+                                        </div>
+                                        <div class="scrollDescription">
+                                          <textarea class="scrollDescription" id="decisionInput" placeholder="Decision Details" style="min-height: 75px !important; max-height: 78px !important; min-width: 98%; margin: 1%;"></textarea>
+                                        </div>
+                                        <button type="button" id="submitDecision" onclick="addTimeStamp()" class="btn btn-secondary btn-sm" style="margin: 0px 0px 10px 5px !important; padding: 4px 16px; font-size: 14px; font-weight: 700;">SUBMIT</button>
+                                      </div>
+                                  </div>
+                                  <div class="card" id="decisionMadeCard" style="box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2) !important; min-width: 80% !important; margin: 1% 10% !important">
+                                    <div class="card-body">
+                                      <div class="scrollDescription" id="decisionMadeDetail" style="min-height: 180px !important; max-height: 180px !important;">
+                                      </div>
+                                      <div class="scrollDescription">
+                                        <textarea class="scrollDescription" id="decisionMadeInput" placeholder="Decision Made Details" style="min-height: 75px !important; max-height: 78px !important; min-width: 98%; margin: 1%;"></textarea>
+                                      </div>
+                                      <button type="button" id="submitMadeDecision" onclick="addTimeStamp()" class="btn btn-secondary btn-sm" style="margin: 0px 0px 10px 5px !important; padding: 4px 16px; font-size: 14px; font-weight: 700;">SUBMIT</button>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div> 
+<!--USER GUIDE VIEW-->                              
+                              <div id="userGuide" class="contentView">
+                              <iframe src="https://usasoc.sof.socom.mil/sites/usasoc-hq-btd/Ashley/SiteAssets/UserGuide.pdf?Web=1" style="min-width: 90%; min-height: 100vh;
+                               margin-top: 5%; margin-left: 5%"></iframe>
+                              </div>
+                            </div>
+                      
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+          <!-- END CONTENT VIEWS-->
+    </div>
+</div>
+<!--END SIDENAV AND MAIN CONTENT CONTAINER  -->
+
+
+<!-- START MODALS HERE HIDDEN UNTIL ADD BUTTON-->
+    <!-- START EFFECT MODAL HERE -->
+    <div class="modal fade new-modal-lg" id="effectModal" tabindex="-1" aria-hidden="true" >
+      <div class="modal-dialog modal-dialog-centered new-modal-lg" role="document">
+        <div class="modal-content new-modal-lg">
+          <div class="modal-header">
+            <h5 class="modal-title" id="addEffect">Add New Effect
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body new-modal-lg">
+            <div class="form-group">
+                <div class="row">
+                  <div class="col">
+                    <label for="loeEffects">LOE</label>
+                    <select class="form-control" id="loeEffects">
+                      <option value="">Select LOE . . .</option>
+                    </select>
+                    <label for="objectiveEffects">Objective</label>
+                    <select class="form-control" id="objectiveEffects">
+                      <option value="">Select Objective . . .</option>
+                    </select>
+                    <label for="imoEffect">IMO</label>
+                    <select class="form-control" id="imoEffect">
+                      <option value="">Select IMO . . .</option>
+                    </select>
+                    <label for="measureEffect">IMO Effect</label>
+                    <select class="form-control" id="measureEffect">
+                      <option value="">Select IMO Effect . . .</option>
+                    </select>
+              </div>
+              <div class="col">
+                <span class="scrollable" id="effectModalDetail" style="min-width: 100%; min-height: 100%;"></span>
+              </div>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+                  <button type="button" id="addNewItem" class="btn btn-primary btn-sm" style="margin-top: 12px; padding: 4px 16px; font-size: 14px; font-weight: 700;">ADD</button>
+                  <button type="button" id="clear" class="btn btn-warning btn-sm" style="margin-top: 12px; padding: 4px 16px; font-size: 14px; font-weight: 700;">CLEAR</button>
+                  <button type="button" id="close" class="btn btn-secondary" data-dismiss="modal" style="margin-top: 12px; padding: 4px 16px; font-size: 14px; font-weight: 700;" >Close</button>
+          </div>
+      </div>
+    </div>
+    </div>
+    <!-- END EFFECT MODAL HERE-->
+    <!-- START TASK MODAL HERE-->
+    <div class="modal fade new-modal-lg" id="taskModal" tabindex="-1" aria-hidden="true" >
+        <div class="modal-dialog modal-dialog-centered new-modal-lg" role="document">
+          <div class="modal-content new-modal-lg">
+            <div class="modal-header">
+              <h5 class="modal-title" id="addTask">Add New Task
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body new-modal-lg">
+              <div class="form-group">
+                  <div class="row">
+                    <div class="col">
+                      <label for="loeTask">LOE</label>
+                      <select class="form-control" id="loeTask">
+                        <option value="">Select LOE . . .</option>
+                      </select>
+                      <label for="objectiveTask">Objective: </label>
+                      <select class="form-control" id="objectiveTask">
+                        <option value="">Select Objective . . .</option>
+                      </select>
+                      <label for="imoTask">IMO: </label>
+                      <select class="form-control" id="imoTask">
+                        <option value="">Select IMO . . .</option>
+                      </select>
+                      <label for="effectTask">IMO Effect: </label>
+                      <select class="form-control" id="effectTask">
+                        <option value="">Select IMO Effect . . .</option>
+                      </select>
+                      <label for="task">Task: </label>
+                      <select class="form-control" id="task"> <!-- this will be a multi-select option with checkboxes in list-->
+                        <option value="">Select Tasks . . .</option>
+                      </select>
+                </div>
+                <div class="col">
+                  <span class="scrollable" id="taskDetails" style="min-width: 100%; min-height: 100%;"></span>
+                </div>
+                </div>
+              </div>
+            </div>
+            <div class="modal-footer">
+                    <button type="button" id="addNewItem" class="btn btn-primary btn-sm" style="margin-top: 12px; padding: 4px 16px; font-size: 14px; font-weight: 700;">ADD</button>
+                    <button type="button" id="clear" class="btn btn-warning btn-sm" style="margin-top: 12px; padding: 4px 16px; font-size: 14px; font-weight: 700;">CLEAR</button>
+                    <button type="button" id="close" class="btn btn-secondary" data-dismiss="modal" style="margin-top: 12px; padding: 4px 16px; font-size: 14px; font-weight: 700;" >Close</button>
+            </div>
+        </div>
+      </div>
+    </div>
+    <!-- END TASK MODAL HERE-->
+<!--END MODALS HERE-->
+</div>
+<!--END SP BODY -->
+</div>
+<script>
+$(".objectiveLink").click(function(){
+    $("#objectiveView").css({"display": "block"});
+    $("#imoView").css({"display": "none"});
+    $("#loeView").css({"display": "none"});
+  });
+$(".imoLink").click(function(){
+    $("#imoView").css({"display": "block"});
+    $("#objectiveView").css({"display": "none"});
+    $("#loeView").css({"display": "none"});
+  });
+$(".loeLink").click(function(){
+    $("#loeView").css({"display": "block"});
+    $("#imoView").css({"display": "none"});
+    $("#objectiveView").css({"display": "none"});
+  });
+//open views from tabs/ links or buttons
+function openView(evt, tabName) {
+  var i, contentView, links;
+  contentView = document.getElementsByClassName("contentView");
+  for (i = 0; i < contentView.length; i++) {
+    contentView[i].style.display = "none";
+  }
+  links = document.getElementsByClassName("links");
+  for (i = 0; i < links.length; i++) {
+    links[i].className = links[i].className.replace(" active", "");
+  }
+  document.getElementById(tabName).style.display = "block";
+  evt.currentTarget.className += " active";
+}
+//jQuery Date Picker - class="date"
+$(function() {
+    $(".date").datepicker();
+});
+var statusList = {
+    null : 'Select Task Status . . .',
+    backlog : 'Backlog',
+    inProgress : 'In Progress',
+    fwdAct : 'Forward Action',
+    completed : 'Completed',
+    blocked : 'Blocked'
+};
+var select = document.querySelector(".statusList");
+for(index in statusList) {
+    select.options[select.options.length] = new Option(statusList[index], index);
+}
+//progress bar 
+//var taskArr = [{taskId:'', status:''}]; //array of tasks by ID and status
+//var completedCount = 0; //completed tasks
+//var total = 0; //total tasks
+//taskArr.forEach((o)=>{
+//  o.tasks.forEach((task) => {
+//    if(task.status == "complete")
+ //     completedCount++;
+ //    total++;
+ // });
+//});
+//var percentage  = (completedCount/total)*100; //gives percentage of tasks will add to task bars with new formula 
+//console.log(percentage+"%");
+//select options styling
+$('select').on('change', function(ev) {
+    $(this).attr('class', '').addClass($(this).children(':selected').val());
+});
+//TABS
+//$(document).on('click', '.nav-link.active', function() {
+//	var href = $(this).attr('href').substring(1);
+//	$(this).removeClass('active');
+//	$('.tab-pane[id="' + href + '"]').removeClass('active');
+//});
+
+//COLLAPSE LIST DETAILS in CARDS
+$(".card.collapse").on('shown.bs.collapse', function () {
+       $(".card.collapse").not($(this)).collapse('hide');
+});
+
+//Phone Number Mask Class of (phone)
+$(".phone")
+	.keydown(function (e) {
+		var key = e.which || e.charCode || e.keyCode || 0;
+		$phone = $(this);
+    // Don't let them remove the starting '('
+    if ($phone.val().length === 1 && (key === 8 || key === 46)) {
+			$phone.val('('); 
+      return false;
+		} 
+    // Reset if they highlight and type over first char.
+    else if ($phone.val().charAt(0) !== '(') {
+			$phone.val('('+String.fromCharCode(e.keyCode)+''); 
+		}
+		// Auto-format- do not expose the mask as the user begins to type
+		if (key !== 8 && key !== 9) {
+			if ($phone.val().length === 4) {
+				$phone.val($phone.val() + ')');
+			}
+			if ($phone.val().length === 5) {
+				$phone.val($phone.val() + ' ');
+			}			
+			if ($phone.val().length === 9) {
+				$phone.val($phone.val() + '-');
+			}
+		}
+		// Allow numeric (and tab, backspace, delete) keys only
+		return (key == 8 || 
+				key == 9 ||
+				key == 46 ||
+				(key >= 48 && key <= 57) ||
+				(key >= 96 && key <= 105));	
+	})
+	.bind('focus click', function () {
+		$phone = $(this);
+		if ($phone.val().length === 0) {
+			$phone.val('(');
+		}
+		else {
+			var val = $phone.val();
+			$phone.val('').val(val); // Ensure cursor remains at the end
+		}
+	})
+	.blur(function () {
+		$phone = $(this);
+		if ($phone.val() === '(') {
+			$phone.val('');
+		}
+});
+
+//remarks input + timestamp in Task View
+$('#submitRemark').click(function () {
+  var d = new Date();
+  var n = d.toTimeString();
+  var remarkInput = ('<br>' + '<span style="color: blue; font-size: 12px; font-weight: 700; font-style: italic; line-height: .2em;">(' + n + ')</span>' + '<br style="line-height: .2em;">' + '<span >' + $("#remarkInput").val().replace(/\n/g,'<br>') + '<br>');
+      $("#taskRemarks").append('<div style="margin-left: 10px;">' + remarkInput + '</div>');
+       $("#remarkInput").val('');
+});
+
+//guidance input + timestamp in Task View
+$('#submitGuidance').click(function () {
+  var d = new Date();
+  var n = d.toTimeString();
+  var remarkInput = ('<br>' + '<span style="color: blue; font-size: 12px; font-weight: 700; font-style: italic; line-height: .2em;">(' + n + ')</span>' +  '<br style="line-height: .2em;">' + '<span >' +$("#guidanceInput").val().replace(/\n/g, '<br>') + '<br>');
+      $("#taskGuidance").append('<div style="margin-left: 10px;">' + remarkInput + '</div>');
+      $("#guidanceInput").val('');
+});
+
+//solution remarks + timestamp in Task View
+$('#submitSolution').click(function () {
+  var d = new Date();
+  var n = d.toTimeString();
+  var remarkInput = ('<br>' + '<span style="color: blue; font-size: 12px; font-weight: 700; font-style: italic; line-height: .2em;">(' + n + ')</span>' + '<br style="line-height: .2em;">' +  '<span >' +$("#solutionInput").val().replace(/\n/g, '<br>') + '<br>');
+      $("#solution").append('<div style="margin-left: 10px;">' + remarkInput + '</div>');
+      $("#solutionInput").val('');
+});
+
+//decision details + timestamp in Task View
+$('#submitDecision').click(function () {
+  var d = new Date();
+  var n = d.toTimeString();
+  var remarkInput = ('<br>' + '<span style="color: blue; font-size: 12px; font-weight: 700; font-style: italic; line-height: .2em;">(' + n + ')</span>' + '<br style="line-height: .2em;">' + '<span>' +$("#decisionInput").val().replace(/\n/g, '<br>') + '<br>');
+      $("#decisionDetail").append('<div style="margin-left: 10px;">' + remarkInput + '</div>');
+      $("#decisionInput").val('');
+});
+
+//decision made details + timestamp in Task View
+$('#submitMadeDecision').click(function () {
+  var d = new Date();
+  var n = d.toTimeString();
+  var remarkInput = ('<br>' + '<span style="color: blue; font-size: 12px; font-weight: 700; font-style: italic; line-height: .2em;">(' + n + ')</span>' +  '<br style="line-height: .2em;">' +  '<span >' +$("#decisionMadeInput").val().replace(/\n/g, '<br>') + '<br>');
+      $("#decisionMadeDetail").append('<div style="margin-left: 10px; padding-left: 5px;">' + remarkInput + '</div>');
+      $("#decisionMadeInput").val('');
+});
+
+//Task Description Edit no Timestamp
+$('#submitTaskDesc').click(function () {
+  var remarkInput = ('<br style="line-height: .2em;">' +  '<span >' +$("#taskDescInput_0").val().replace(/\n/g, '<br>') + '<br>');
+      $("#taskDescription_0").append('<div style="margin-left: 10px; ">' + remarkInput + '</div>');
+      $("#taskDescInput_0").val('');
+});
+
+//Milestone Description Edit no Timestamp
+$('#submitMilestone').click(function () {
+  var remarkInput = ('<br style="line-height: .2em;">' +  '<span >' +$("#milestoneInput").val().replace(/\n/g, '<br>') + '<br>');
+      $("#milestoneDescription").append('<div style="margin-left: 10px; ">' + remarkInput + '</div>');
+      $("#milestoneInput").val('');
+});
+
+//Effect Description Edit no Timestamp
+$('#submitEffect').click(function () {
+  var remarkInput = ('<br style="line-height: .2em;">' +  '<span >' +$("#effectInput").val().replace(/\n/g, '<br>') + '<br>');
+      $("#effectDescription").append('<div style="margin-left: 10px; ">' + remarkInput + '</div>');
+      $("#effectInput").val('');
+});
+
+//MOP Description Edit no Timestamp
+$('#submitMOP').click(function () {
+  var remarkInput = ('<br style="line-height: .2em;">' +  '<span >' +$("#mopInput").val().replace(/\n/g, '<br>') + '<br>');
+      $("#mopDescription").append('<div style="margin-left: 10px; ">' + remarkInput + '</div>');
+      $("#mopInput").val('');
+});
+//This is for side nav tree functionality
+$('.tree .icon').click(function() {
+    $(this).parent().toggleClass('expanded').
+      closest('li').find('ul:first').
+      toggleClass('show-effect');
+});
+
+//EFFECTS MODAL POPULATE DESCRIPTION ON SELECTION
+//$("#loeEffects").change(function () {
+  //var str = 'Level of Effort:  ';
+//$("#loeEffects option:selected").each(function() {
+  //  str += "<br/>" + $(this).text() + " " + "<br/>" + "<br/>";
+  //});
+//$("#effectModalDetail").append(str);
+//});
+
+</script>
+</body>
+</html>
